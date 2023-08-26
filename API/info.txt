@@ -1,1 +1,6 @@
 This folder will contain the correct API files
+
+Weather API login info
+
+user: cjmesserly@crimson.ua.edu
+psas: password
