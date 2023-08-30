@@ -1,28 +1,17 @@
-function generateTemp(){
-    alert("PRESSED");
-    let temperature = pullData();
-    alert(temperature);
+async function generateTemp(){
+    let temperature = await pullData();
+    console.log('Data is: ' + temperature);
+
+    const originalElement = document.getElementById('curr');
+    originalElement.innerHTML = temperature;
+    
 }
 
-function pullData(){
-    
-    const axios = require('axios');
-    const params = {
-        access_key: 'ed51a486d24143703a4d049dec99b63e',
-        query: 'New York'
-    }
+async function pullData(){
 
-    axios.get('http://api.weatherstack.com/current', {params})
-    .then(response => {
-    const apiResponse = response.data;
-    console.log(apiResponse.current.temperature);
-    return apiResponse.apiResponse.current.temperature;
-  }).catch(error => {
-    console.log(error);
-  });
- 
+  const response = await fetch('/getTemp');
+  const data = await response.json();
+  //console.log("Here" + data);
+  return data.current.temperature;
 
-
-
-    console.log(1);
 }
